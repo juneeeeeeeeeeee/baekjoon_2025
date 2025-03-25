@@ -90,17 +90,13 @@ int population_move(void)
 {
     int population_moved = 0;
     for(int i=1;i<=N;i++)
-    {
         for(int j=1;j<=N;j++)
-        {
             if(!check[i][j])
             {
                 pos p = {i, j};
                 if(bfs(p))
                     population_moved = 1;
             }
-        }
-    }
     if(population_moved)
     {
         memcpy(map, newmap, 51*51*sizeof(int));
@@ -118,7 +114,7 @@ int main(void)
     while(1)
     {
         int move = population_move();
-        if(move != 1) break;
+        if(!move) break;
         days += move;
     }
     printf("%d", days);
