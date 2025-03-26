@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-typedef struct _minheap{
+typedef struct _maxheap{
     unsigned int arr[100001];
     int size;
-} minheap;
-void push(minheap* hp, unsigned int n)
+} maxheap;
+void push(maxheap* hp, unsigned int n)
 {
     hp->size++;
     int findingpos = hp->size;
-    while(findingpos > 1 && hp->arr[findingpos >> 1] > n)
+    while(findingpos > 1 && hp->arr[findingpos >> 1] < n)
     {
         hp->arr[findingpos] = hp->arr[findingpos >> 1];
         findingpos = findingpos >> 1;
     }
     hp->arr[findingpos] = n;
 }
-unsigned int pop(minheap* hp)
+unsigned int pop(maxheap* hp)
 {
     if(!hp->size)
         return 0;
@@ -26,9 +26,9 @@ unsigned int pop(minheap* hp)
     int child = 2;
     while(child <= hp->size)
     {
-        if(child + 1 <= hp->size && hp->arr[child] > hp->arr[child+1])
+        if(child + 1 <= hp->size && hp->arr[child] < hp->arr[child+1])
             child++;
-        if(hp->arr[child] > last)
+        if(hp->arr[child] < last)
             break;
         hp->arr[parent] = hp->arr[child];
         parent = child;
@@ -41,7 +41,7 @@ int main(void)
 {
     int N;
     scanf("%d", &N);
-    minheap* hp = malloc(sizeof(minheap));
+    maxheap* hp = malloc(sizeof(maxheap));
     hp->size = 0;
     while(N--)
     {
