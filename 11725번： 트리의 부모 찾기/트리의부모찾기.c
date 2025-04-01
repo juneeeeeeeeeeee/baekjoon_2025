@@ -60,6 +60,7 @@ int main(void)
             free(temp);
             ll[i]->next = temptemp;
         }
+        free(ll[i]);
     }
     for(int i=2;i<=N;i++)
         printf("%d\n", parent[i]);
