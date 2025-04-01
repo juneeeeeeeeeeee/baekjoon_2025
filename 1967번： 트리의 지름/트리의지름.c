@@ -13,14 +13,12 @@ int max_dist, max_node;
 int N;
 void ll_push(linked_list* ll, int n, int value)
 {
-    linked_list* temp = ll;
-    while(temp->next)
-        temp = temp->next;
+    // 순서 중요 X
     linked_list* new = (linked_list*)malloc(sizeof(linked_list));
     new->n = n;
     new->value = value;
-    new->next = NULL;
-    temp->next = new;
+    new->next = ll->next;
+    ll->next = new;
 }
 void ll_free(linked_list* ll)
 {
