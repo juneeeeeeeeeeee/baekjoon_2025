@@ -36,7 +36,7 @@ heap_node pop_hp(minheap* hp)
     int child = 2;
     while(child <= hp->size)
     {
-        if(child+1 <= hp->size && hp->arr[child].fake_dist > hp->arr[child+1].fake_dist) child++;
+        if(child < hp->size && hp->arr[child].fake_dist > hp->arr[child+1].fake_dist) child++;
         if(hp->arr[child].fake_dist > last.fake_dist) break;
         hp->arr[parent] = hp->arr[child];
         parent = child;
